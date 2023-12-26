@@ -1,10 +1,11 @@
-import { FC } from "react";
+'use client'
+import { FC } from "react"
 
 interface inputRadioProps {
-  inputType: string;
-  onChangeHandler: Function;
-  state: string;
-  stateValue: string;
+  inputType: string
+  onChangeHandler: (arg0: string) => void
+  state: string 
+  stateValue: string
 }
 
 const InputRadio: FC<inputRadioProps> = ({
@@ -19,12 +20,12 @@ const InputRadio: FC<inputRadioProps> = ({
         type="radio"
         checked={state === stateValue}
         onChange={() => {
-          onChangeHandler(stateValue);
+          onChangeHandler(stateValue)
         }}
       />
       <p>{inputType}</p>
     </div>
-  );
-};
+  )
+}
 
-export default InputRadio;
+export default InputRadio
