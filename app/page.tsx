@@ -1,48 +1,41 @@
 "use client"
 import InputRadio from "@/src/components/input/input_radio"
 import { useState } from "react"
-type TOptions = {
-  name: string
-  userwatchFilm: string
-  likeFilm: string
-  cashSuccess: string
-  isDislikeUserIdot: string
-  isLikeUserIdiot: string
-}
 
 const Home = () => {
   const [name, setName] = useState<string>("")
   const [watchFilm, setWatchFilm] = useState<string>("")
   const [likeFilm, setLikeFilm] = useState<string>("")
   const [cashSuccess, setCashSuccess] = useState<string>("")
-  const [isLikeUserIdiot, setIsLikeUserIdiot] = useState<string>("")
-  const [isDislikeUserIdot, setIsDislikeUserIdot] = useState<string>("")
   const [result, setResult] = useState<string>("")
 
-  const opinion = {
-    userName: name,
-    userwatchFilm: watchFilm,
-    userLikeFilm: likeFilm,
-    userCash: cashSuccess,
-    isUserLike: isLikeUserIdiot,
-    isUserDislike: isDislikeUserIdot,
-  }
-  console.log(opinion);
-  
   const opinionResult = () => {
-    if (opinion.userwatchFilm === "yes", opinion.userLikeFilm === "yes") {
-      setResult("Ваше мнение очень важно для нас!")
+    const results: any = {
+      // смотрел, понравился, окупился
+      "yes, yes, yes": "врывайся с двух ног в спор!",
+      "yes, yes, no": "да, но стоит задуматься!",
+      "yes, no, no": "вы илитарный говноед, будь осторожен!",
+      "yes, no, yes": "аргументируй или невозникай!",
+      "no, yes, yes": "молчи свой рот?!",
+      "no, yes, no": "тише будь!",
+      "no, no, yes": "только сильные аргументы?",
+      "no, no, no": "ну и куда ты лезешь? ",
     }
-    if (opinion.userwatchFilm === "yes", opinion.userLikeFilm === "no") {
-      setResult("Сомнительно, но окэй!")
+    const userAnswers = {
+      watchFilm: watchFilm,
+      likeFilm: likeFilm,
+      cash: cashSuccess,
     }
-    if (opinion.userwatchFilm === "no", opinion.userLikeFilm === "no") {
-      setResult("Ну это пиздец какой то!")
+    setResult(
+      results[`${userAnswers.watchFilm}, ${userAnswers.likeFilm}, ${userAnswers.cash}`],
+    )
+    if (!name) {
+      setName('Username')
     }
   }
-  
+
   return (
-    <main className="flex justify-center">
+    <main className="grid justify-center">
       <div className="pt-10">
         <h1 className="text-2xl text-center py-4">
           Давай определим важность твоего мнения дружок!
@@ -122,48 +115,6 @@ const Home = () => {
               />
             </div>
           </div>
-          <div className="flex gap-4 py-2 justify-between">
-            <p>Cчитаешь ли ты того, кому не понравился фильм/игра идиотом?</p>
-            <div className="flex justify-end gap-2">
-              <InputRadio
-                inputType="Да"
-                onChangeHandler={() => {
-                  setIsDislikeUserIdot("yes")
-                }}
-                state={isDislikeUserIdot}
-                stateValue="yes"
-              />
-              <InputRadio
-                inputType="Нет"
-                onChangeHandler={() => {
-                  setIsDislikeUserIdot("no")
-                }}
-                state={isDislikeUserIdot}
-                stateValue="no"
-              />
-            </div>
-          </div>
-          <div className="flex gap-4 py-2 justify-between">
-            <p>Cчитаешь ли ты того, кому понравился фильм/игра идиотом?</p>
-            <div className="flex justify-end gap-2">
-              <InputRadio
-                inputType="Да"
-                onChangeHandler={() => {
-                  setIsLikeUserIdiot("yes")
-                }}
-                state={isLikeUserIdiot}
-                stateValue="yes"
-              />
-              <InputRadio
-                inputType="Нет"
-                onChangeHandler={() => {
-                  setIsLikeUserIdiot("no")
-                }}
-                state={isLikeUserIdiot}
-                stateValue="no"
-              />
-            </div>
-          </div>
           <input
             type="submit"
             value="Проверить"
@@ -174,7 +125,9 @@ const Home = () => {
             }}
           />
         </form>
-        <div className="mt-4 text-center text-4xl">{result}</div>
+        <div className="mt-4 text-center text-2xl break-all">
+          {name ? <>{name}, </> : <></>} {result}
+        </div>
       </div>
     </main>
   )
