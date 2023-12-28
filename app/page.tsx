@@ -41,19 +41,19 @@ const Home = () => {
           Давай определим важность твоего мнения дружок!
         </h1>
         <form className="flex flex-col justify-center border-2 p-4 rounded-lg">
-          <div className="flex gap-4 py-2 justify-between">
-            <p>Ваше имя:</p>
+          <div className="flex gap-4 py-2 justify-between items-center">
+            <p className="text-sm md:text-lg">Ваше имя:</p>
             <input
               type="text"
-              className="border-2 border-cyan-600 rounded-lg text-center px-4"
+              className="border-2 border-cyan-600 rounded-lg text-center px-4 py-1 w-48 md:w-96"
               placeholder="Иванов Иван"
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 setName(event.target.value)
               }}
             />
           </div>
-          <div className="flex gap-4 py-2 justify-between">
-            <p>Ты смотрел фильм или играл в игру?</p>
+          <div className="flex gap-4 py-2 justify-between items-center">
+            <p className="text-sm md:text-lg" >Ты смотрел фильм или играл в игру?</p>
             <div className="flex justify-end gap-2">
               <InputRadio
                 inputType="Да"
@@ -73,9 +73,9 @@ const Home = () => {
               />
             </div>
           </div>
-          <div className="flex gap-4 py-2 justify-between">
-            <p>Тебе понравился фильм или игра?</p>
-            <div className="flex justify-end gap-2">
+          <div className="flex gap-4 py-2 justify-between items-center">
+            <p className="text-sm md:text-lg">Тебе понравился фильм или игра?</p>
+            <div className="flex justify-end  gap-2">
               <InputRadio
                 inputType="Да"
                 onChangeHandler={() => {
@@ -94,9 +94,9 @@ const Home = () => {
               />
             </div>
           </div>
-          <div className="flex gap-4 py-2 justify-between">
-            <p>Фильм или игра имели коммерческий успех?</p>
-            <div className="flex justify-end gap-2">
+          <div className="flex gap-1 md:gap-4 py-2 justify-between items-center">
+            <p className="text-sm md:text-lg">Фильм или игра имели коммерческий успех?</p>
+            <div className="flex justify-end  gap-2">
               <InputRadio
                 inputType="Да"
                 onChangeHandler={() => {
@@ -125,7 +125,7 @@ const Home = () => {
             }}
           />
         </form>
-        <div className="mt-4 text-center text-2xl break-all">
+        <div className="mt-4 text-center text-lg md:text-2xl break-all">
           {name ? <>{name}, </> : <></>} {result}
         </div>
       </div>
