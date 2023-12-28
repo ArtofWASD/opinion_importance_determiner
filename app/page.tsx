@@ -38,7 +38,7 @@ const Home = () => {
     <main className="grid justify-center">
       <div className="pt-10">
         <h1 className="text-2xl text-center py-4">
-          Давай определим важность твоего мнения дружок!
+          Давай определим важность твоего мнения, дружок!
         </h1>
         <form className="flex flex-col justify-center border-2 p-4 rounded-lg">
           <div className="flex gap-4 py-2 justify-between items-center">
